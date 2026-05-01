@@ -1,0 +1,50 @@
+# project structure
+
+.
+├── cmd
+│   └── api
+│       └── main.go
+
+├── internal
+│   ├── core
+│   │   ├── domain
+│   │   │   ├── student.go
+│   │   │   ├── staff.go
+│   │   │   └── role.go
+│   │   │
+│   │   ├── ports
+│   │   │   ├── student
+│   │   │   │   ├── repository.go
+│   │   │   │   └── service.go
+│   │   │   │
+│   │   │   ├── staff
+│   │   │   │   ├── repository.go
+│   │   │   │   └── service.go
+│   │   │
+│   │   └── services
+│   │       ├── student
+│   │       │   └── service.go
+│   │       └── staff
+│   │           └── service.go
+│   │
+│   ├── adapters
+│   │   ├── handlers
+│   │   │   ├── student_handler.go
+│   │   │   └── staff_handler.go
+│   │   │
+│   │   ├── repositories
+│   │   │   ├── student_repository.go
+│   │   │   └── staff_repository.go
+│   │   │
+│   │   └── middleware
+│   │       └── auth.go
+│   │
+│   └── infrastructure
+│       ├── database
+│       │   └── postgres.go
+│       └── config
+│           └── config.go
+
+└── pkg
+    └── utils
+        └── response.go
