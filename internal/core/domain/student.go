@@ -6,8 +6,8 @@ import (
 
 type Student struct {
 	StudentID      string
-	MiddleName     string
 	FirstName      string
+	MiddleName     string
 	LastName       string
 	BirthDate      time.Time
 	Gender         string
@@ -17,6 +17,14 @@ type Student struct {
 	Email          string
 	StudentType    string
 	Status         string
+	InactiveReason string
 	StatusUpdateAt time.Time
 	CampusID       string
+	CreatedAt      time.Time
+	CreatedBy      string
+	UpdatedAt      time.Time
+	UpdatedBy      string
+	DeletedAt      time.Time
+	DeletedBy      string
+	Campus         Campus `gorm:"foreignkey:CampusID;references:ID"`
 }
