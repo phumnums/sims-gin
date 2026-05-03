@@ -4,14 +4,14 @@ import (
 	"time"
 )
 
-type Student struct {
-	StudentID      string
+type Students struct {
+	ID             string
 	FirstName      string
 	MiddleName     string
 	LastName       string
 	BirthDate      time.Time
 	Gender         string
-	NatinalID      string
+	NationalID     string
 	PassportID     string
 	PhoneNumber    string
 	Email          string
