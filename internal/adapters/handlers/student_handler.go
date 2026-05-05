@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	studentDTO "cims/internal/adapters/dto"
 	studentPort "cims/internal/core/ports/student"
 	"net/http"
 
@@ -16,21 +17,15 @@ func NewHandler(service studentPort.Service) *StudentHandler {
 }
 
 func (h *StudentHandler) SearchStudents(c *gin.Context) {
-	firstName := c.Query("first_name")
-	lastName := c.Query("last_name")
-	nationalID := c.Query("national_id")
-	phoneNumber := c.Query("phone_number")
-	email := c.Query("email")
-	campusID := c.Query("campus_id")
 
-	students, err := h.service.SearchStudents(
-		firstName,
-		lastName,
-		nationalID,
-		phoneNumber,
-		email,
-		campusID,
-	)
+	var params studentDTO.SearchStudents
+	if err := c.ShouldBindQuery(&params); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+	}
+
+	students, page, size, total, err := h.service.SearchStudents(params)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
@@ -38,6 +33,9 @@ func (h *StudentHandler) SearchStudents(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"data": students,
+		"data":  students,
+		"page":  page,
+		"size":  size,
+		"total": total,
 	})
 }

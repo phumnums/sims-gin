@@ -4,6 +4,7 @@ import (
 	studentHandler "cims/internal/adapters/handlers"
 	studentRepo "cims/internal/adapters/repositories"
 	studentService "cims/internal/core/services/student"
+	"cims/internal/infarstructure/config"
 	"cims/internal/infarstructure/database"
 	"log"
 	"net/http"
@@ -13,7 +14,12 @@ import (
 
 func main() {
 
-	db, err := database.NewPostgresDB()
+	cfg, err := config.LoadConfig("config.yaml")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	db, err := database.NewPostgresDB(cfg)
 	if err != nil {
 		log.Fatal(err)
 	}

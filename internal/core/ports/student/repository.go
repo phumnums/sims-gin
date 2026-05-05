@@ -1,16 +1,10 @@
 package student
 
 import (
+	"cims/internal/adapters/dto"
 	"cims/internal/core/domain"
 )
 
 type Repository interface {
-	Search(
-		firstName string,
-		lastName string,
-		nationalID string,
-		phoneNumber string,
-		email string,
-		campusID string,
-	) ([]domain.Students, error)
+	Search(params dto.SearchStudents) ([]domain.Students, int64, error)
 }

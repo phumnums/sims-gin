@@ -1,14 +1,9 @@
 package student
 
-import "cims/internal/core/domain"
+import (
+	"cims/internal/adapters/dto"
+)
 
 type Service interface {
-	SearchStudents(
-		firstName string,
-		lastName string,
-		nationalID string,
-		phoneNumber string,
-		email string,
-		campusID string,
-	) ([]domain.Students, error)
+	SearchStudents(param dto.SearchStudents) ([]dto.StudentResponse, int, int, int64, error)
 }
