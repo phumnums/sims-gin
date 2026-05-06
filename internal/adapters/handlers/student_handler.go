@@ -3,6 +3,7 @@ package handlers
 import (
 	studentDTO "cims/internal/adapters/dto"
 	studentPort "cims/internal/core/ports/student"
+	"cims/pkg/utils/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,17 +26,10 @@ func (h *StudentHandler) SearchStudents(c *gin.Context) {
 		})
 	}
 
-	students, page, size, total, err := h.service.SearchStudents(params)
+	students, page, size, total, status, err := h.service.SearchStudents(params)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		response.Error(c, status, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"data":  students,
-		"page":  page,
-		"size":  size,
-		"total": total,
-	})
+	response.SuccessPagination(c, students, status, page, size, total)
 }

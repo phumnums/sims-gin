@@ -4,6 +4,8 @@ import (
 	"cims/internal/adapters/dto"
 	"cims/internal/adapters/mappers"
 	studentPort "cims/internal/core/ports/student"
+	"errors"
+	"net/http"
 )
 
 type service struct {
@@ -14,7 +16,7 @@ func NewService(repo studentPort.Repository) studentPort.Service {
 	return &service{repo: repo}
 }
 
-func (s *service) SearchStudents(params dto.SearchStudents) ([]dto.StudentResponse, int, int, int64, error) {
+func (s *service) SearchStudents(params dto.SearchStudents) ([]dto.StudentResponse, int, int, int64, int, error) {
 
 	if params.Page < 1 {
 		params.Page = 1
@@ -25,10 +27,10 @@ func (s *service) SearchStudents(params dto.SearchStudents) ([]dto.StudentRespon
 
 	students, total, err := s.repo.Search(params)
 	if err != nil {
-		return nil, 0, 0, 0, err
+		return nil, 0, 0, 0, http.StatusInternalServerError, errors.New("server error")
 	}
 
 	studentMapper := mappers.StudentResponseMapper(students)
 
-	return studentMapper, params.Page, params.Size, total, nil
+	return studentMapper, params.Page, params.Size, total, http.StatusOK, nil
 }

@@ -5,5 +5,5 @@ import (
 )
 
 type Service interface {
-	SearchStudents(param dto.SearchStudents) ([]dto.StudentResponse, int, int, int64, error)
+	SearchStudents(param dto.SearchStudents) ([]dto.StudentResponse, int, int, int64, int, error)
 }
