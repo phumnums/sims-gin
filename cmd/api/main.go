@@ -33,8 +33,6 @@ func main() {
 	r := routes.SetupRouter()
 	routes.RegisterrStudentRoutes(r, handler)
 
-	r.GET("/students", handler.SearchStudents)
-
 	// Start server on port 8080 (default)
 	// Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)
 	if err := r.Run(":3000"); err != nil {

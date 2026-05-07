@@ -9,6 +9,6 @@ import (
 func RegisterrStudentRoutes(r *gin.Engine, handler *studentHandler.StudentHandler) {
 	students := r.Group("/student")
 	{
-		students.GET("", handler.SearchStudents)
+		students.GET("", handler.GetStudents)
 	}
 }

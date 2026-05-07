@@ -6,5 +6,5 @@ import (
 )
 
 type Repository interface {
-	Search(params dto.SearchStudents) ([]domain.Students, int64, error)
+	FindAll(params dto.SearchStudents) ([]domain.Students, int64, error)
 }

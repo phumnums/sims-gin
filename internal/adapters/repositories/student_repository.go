@@ -17,7 +17,7 @@ func NewStudentRepository(db *gorm.DB) studentPort.Repository {
 	return &studentRepository{db: db}
 }
 
-func (r *studentRepository) Search(params dto.SearchStudents) ([]domain.Students, int64, error) {
+func (r *studentRepository) FindAll(params dto.SearchStudents) ([]domain.Students, int64, error) {
 
 	var students []domain.Students
 	var total int64

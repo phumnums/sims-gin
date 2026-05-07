@@ -13,7 +13,6 @@ SIMS - Student Information Middleware System (developing)
 │   │   ├── ports
 │   │   └── services
 │   │
-│   │
 │   ├── adapters
 │   │   ├── dto
 │   │   ├── handlers
@@ -22,7 +21,6 @@ SIMS - Student Information Middleware System (developing)
 │   │   ├── repositories
 │   │   └── routes
 │   │
-│   │
 │   └── infrastructure
 │       ├── database
 │       └── config
@@ -30,3 +28,6 @@ SIMS - Student Information Middleware System (developing)
 └── pkg
     └── utils
         └── response
+
+# Database
+    ER Diagram: https://dbdiagram.io/d/sims-69f31d9eddb9320fdc9b740e

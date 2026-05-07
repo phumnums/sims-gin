@@ -17,7 +17,7 @@ func NewHandler(service studentPort.Service) *StudentHandler {
 	return &StudentHandler{service: service}
 }
 
-func (h *StudentHandler) SearchStudents(c *gin.Context) {
+func (h *StudentHandler) GetStudents(c *gin.Context) {
 
 	var params studentDTO.SearchStudents
 	if err := c.ShouldBindQuery(&params); err != nil {
@@ -26,7 +26,7 @@ func (h *StudentHandler) SearchStudents(c *gin.Context) {
 		})
 	}
 
-	students, page, size, total, status, err := h.service.SearchStudents(params)
+	students, page, size, total, status, err := h.service.GetAll(params)
 	if err != nil {
 		response.Error(c, status, err.Error())
 		return
