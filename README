@@ -1,50 +1,32 @@
+SIMS - Student Information Middleware System (developing)
+
 # project structure
 
 .
 ├── cmd
 │   └── api
-│       └── main.go
-
+│       └── main.go 
+│   
 ├── internal
 │   ├── core
 │   │   ├── domain
-│   │   │   ├── student.go
-│   │   │   ├── staff.go
-│   │   │   └── role.go
-│   │   │
 │   │   ├── ports
-│   │   │   ├── student
-│   │   │   │   ├── repository.go
-│   │   │   │   └── service.go
-│   │   │   │
-│   │   │   ├── staff
-│   │   │   │   ├── repository.go
-│   │   │   │   └── service.go
-│   │   │
 │   │   └── services
-│   │       ├── student
-│   │       │   └── service.go
-│   │       └── staff
-│   │           └── service.go
+│   │
 │   │
 │   ├── adapters
+│   │   ├── dto
 │   │   ├── handlers
-│   │   │   ├── student_handler.go
-│   │   │   └── staff_handler.go
-│   │   │
+│   │   ├── mappers
+│   │   ├── middleware
 │   │   ├── repositories
-│   │   │   ├── student_repository.go
-│   │   │   └── staff_repository.go
-│   │   │
-│   │   └── middleware
-│   │       └── auth.go
+│   │   └── routes
+│   │
 │   │
 │   └── infrastructure
 │       ├── database
-│       │   └── postgres.go
 │       └── config
-│           └── config.go
-
+│   
 └── pkg
     └── utils
-        └── response.go
+        └── response
