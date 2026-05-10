@@ -2,6 +2,8 @@ package domain
 
 import (
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Students struct {
@@ -27,7 +29,7 @@ type Students struct {
 	CreatedBy       string
 	UpdatedAt       time.Time
 	UpdatedBy       string
-	DeletedAt       time.Time
+	DeletedAt       *gorm.DeletedAt
 	DeletedBy       string
 	Campus          Campus `gorm:"foreignkey:CampusID;references:ID"`
 }

@@ -13,7 +13,7 @@ type StudentHandler struct {
 	service studentPort.Service
 }
 
-func NewHandler(service studentPort.Service) *StudentHandler {
+func NewStudentHandler(service studentPort.Service) *StudentHandler {
 	return &StudentHandler{service: service}
 }
 
@@ -21,14 +21,13 @@ func (h *StudentHandler) GetStudents(c *gin.Context) {
 
 	var params studentDTO.SearchStudents
 	if err := c.ShouldBindQuery(&params); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		response.Error(c, http.StatusBadRequest, err)
+		return
 	}
 
 	students, page, size, total, status, err := h.service.GetAll(params)
 	if err != nil {
-		response.Error(c, status, err.Error())
+		response.Error(c, status, err)
 		return
 	}
 	response.SuccessPagination(c, students, status, page, size, total)

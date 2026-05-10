@@ -12,7 +12,7 @@ type service struct {
 	repo studentPort.Repository
 }
 
-func NewService(repo studentPort.Repository) studentPort.Service {
+func NewStudentService(repo studentPort.Repository) studentPort.Service {
 	return &service{repo: repo}
 }
 

@@ -31,12 +31,12 @@ func Success(c *gin.Context, code int, data interface{}, message string) {
 	})
 }
 
-func Error(c *gin.Context, code int, message string) {
+func Error(c *gin.Context, code int, message error) {
 	c.JSON(http.StatusOK, Response{
 		Status:  "failed",
 		Code:    code,
 		Data:    nil,
-		Message: message,
+		Message: message.Error(),
 	})
 }
 

@@ -4,17 +4,18 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Roles struct {
 	ID              uuid.UUID
-	name            string
+	Name            string
 	Status          string
 	StatusUpdatedAt time.Time
 	CreatedAt       time.Time
 	CreatedBy       string
 	UpdatedAt       time.Time
 	UpdatedBy       string
-	DeletedAt       time.Time
+	DeletedAt       *gorm.DeletedAt
 	DeletedBy       string
 }

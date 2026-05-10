@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Staffs struct {
@@ -22,7 +23,7 @@ type Staffs struct {
 	CreatedBy       string
 	UpdatedAt       time.Time
 	UpdatedBy       string
-	DeletedAt       time.Time
+	DeletedAt       *gorm.DeletedAt
 	DeletedBy       string
 	Role            Roles  `gorm:"foreignkey:RoleID;references:ID"`
 	Campus          Campus `gorm:"foreignkey:CampusID;references:ID"`
@@ -37,7 +38,7 @@ type Users struct {
 	CreatedBy    string
 	UpdatedAt    time.Time
 	UpdatedBy    string
-	DeletedAt    time.Time
+	DeletedAt    *gorm.DeletedAt
 	DeletedBy    string
 	Staff        Staffs `gorm:"foreignkey:StaffID;references:ID"`
 }

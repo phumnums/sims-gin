@@ -15,9 +15,16 @@ type Database struct {
 	SSLMode  string `yaml:"sslmode"`
 }
 
+type Server struct {
+	Secret string `yaml:"secret"`
+}
+
 type Config struct {
 	Database Database `yaml:"database"`
+	Server   Server   `yaml:"server"`
 }
+
+var App Config
 
 func LoadConfig(path string) (*Config, error) {
 	file, err := os.ReadFile(path)

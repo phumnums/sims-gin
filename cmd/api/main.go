@@ -1,9 +1,10 @@
 package main
 
 import (
-	studentHandler "cims/internal/adapters/handlers"
-	studentRepo "cims/internal/adapters/repositories"
+	"cims/internal/adapters/handlers"
+	"cims/internal/adapters/repositories"
 	"cims/internal/adapters/routes"
+	authService "cims/internal/core/services/auth"
 	studentService "cims/internal/core/services/student"
 	"cims/internal/infarstructure/config"
 	"cims/internal/infarstructure/database"
@@ -25,13 +26,19 @@ func main() {
 	}
 
 	// init layer
-	repo := studentRepo.NewStudentRepository(db)
-	service := studentService.NewService(repo)
-	handler := studentHandler.NewHandler(service)
+	// student
+	studentRepo := repositories.NewStudentRepository(db)
+	studentService := studentService.NewStudentService(studentRepo)
+	studentHandler := handlers.NewStudentHandler(studentService)
+	// user
+	userRepo := repositories.NewAuthRepository(db)
+	userService := authService.NewAuthService(userRepo)
+	userHandler := handlers.NewAuthHandler(userService)
 
 	// setup routes
 	r := routes.SetupRouter()
-	routes.RegisterrStudentRoutes(r, handler)
+	routes.RegisterrStudentRoutes(r, studentHandler)
+	routes.RegisterUserRoutes(r, userHandler)
 
 	// Start server on port 8080 (default)
 	// Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)

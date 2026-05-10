@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type University struct {
@@ -13,7 +14,7 @@ type University struct {
 	CreatedBy string
 	UpdatedAt time.Time
 	UpdatedBy string
-	DeletedAt time.Time
+	DeletedAt *gorm.DeletedAt
 	DeletedBy string
 }
 
@@ -27,7 +28,7 @@ type Campus struct {
 	CreatedBy       string
 	UpdatedAt       time.Time
 	UpdatedBy       string
-	DeletedAt       time.Time
+	DeletedAt       *gorm.DeletedAt
 	DeletedBy       string
 	University      University `gorm:"foreignkey:UniversityID;references:ID"`
 }
