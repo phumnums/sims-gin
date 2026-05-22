@@ -15,7 +15,7 @@ type University struct {
 	UpdatedAt time.Time
 	UpdatedBy string
 	DeletedAt *gorm.DeletedAt
-	DeletedBy string
+	DeletedBy *string
 }
 
 type Campus struct {
@@ -29,6 +29,6 @@ type Campus struct {
 	UpdatedAt       time.Time
 	UpdatedBy       string
 	DeletedAt       *gorm.DeletedAt
-	DeletedBy       string
+	DeletedBy       *string
 	University      University `gorm:"foreignkey:UniversityID;references:ID"`
 }

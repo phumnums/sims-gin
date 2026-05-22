@@ -9,14 +9,17 @@ import (
 
 type Staffs struct {
 	ID              uuid.UUID
-	FirstName       string
-	MiddleName      string
-	LastName        string
+	FirstNameTH     string
+	MiddleNameTH    *string
+	LastNameTH      string
+	FirstNameENG    string
+	MiddleNameENG   *string
+	LastNameENG     string
 	PhoneNumber     string
 	Email           string
 	Status          string
 	StatusUpdatedAt time.Time
-	InactiveReason  string
+	InactiveReason  *string
 	RoleID          uuid.UUID
 	CampusID        uuid.UUID
 	CreatedAt       time.Time
@@ -24,7 +27,7 @@ type Staffs struct {
 	UpdatedAt       time.Time
 	UpdatedBy       string
 	DeletedAt       *gorm.DeletedAt
-	DeletedBy       string
+	DeletedBy       *string
 	Role            Roles  `gorm:"foreignkey:RoleID;references:ID"`
 	Campus          Campus `gorm:"foreignkey:CampusID;references:ID"`
 }
@@ -39,6 +42,6 @@ type Users struct {
 	UpdatedAt    time.Time
 	UpdatedBy    string
 	DeletedAt    *gorm.DeletedAt
-	DeletedBy    string
+	DeletedBy    *string
 	Staff        Staffs `gorm:"foreignkey:StaffID;references:ID"`
 }

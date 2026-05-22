@@ -10,6 +10,12 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+type AuthContext struct {
+	UserID   string
+	Role     string
+	CampusID string
+}
+
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -33,9 +39,11 @@ func AuthMiddleware() gin.HandlerFunc {
 
 		claims := token.Claims.(*jwtpkg.Claims)
 
-		c.Set("staff_id", claims.StaffID)
-		c.Set("role_name", claims.RoleName)
-		c.Set("campus_id", claims.CumpusID)
+		c.Set("ctx", AuthContext{
+			UserID:   claims.StaffID,
+			Role:     claims.RoleName,
+			CampusID: claims.CumpusID,
+		})
 
 		c.Next()
 	}

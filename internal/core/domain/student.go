@@ -3,11 +3,12 @@ package domain
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type Students struct {
-	ID              string
+	ID              uuid.UUID
 	FirstNameTH     string
 	MiddleNameTH    string
 	LastNameTH      string
@@ -24,12 +25,12 @@ type Students struct {
 	Status          string
 	InactiveReason  string
 	StatusUpdatedAt time.Time
-	CampusID        string
+	CampusID        uuid.UUID
 	CreatedAt       time.Time
 	CreatedBy       string
 	UpdatedAt       time.Time
 	UpdatedBy       string
 	DeletedAt       *gorm.DeletedAt
-	DeletedBy       string
+	DeletedBy       *string
 	Campus          Campus `gorm:"foreignkey:CampusID;references:ID"`
 }

@@ -17,5 +17,5 @@ type Roles struct {
 	UpdatedAt       time.Time
 	UpdatedBy       string
 	DeletedAt       *gorm.DeletedAt
-	DeletedBy       string
+	DeletedBy       *string
 }

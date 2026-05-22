@@ -9,7 +9,7 @@ func StudentResponseMapper(students []domain.Students) []dto.StudentResponse {
 	var result []dto.StudentResponse
 	for _, s := range students {
 		data := dto.StudentResponse{
-			ID:              s.ID,
+			ID:              s.ID.String(),
 			FirstNameTH:     s.FirstNameTH,
 			MiddleNameTH:    s.MiddleNameTH,
 			LastNameTH:      s.LastNameTH,
